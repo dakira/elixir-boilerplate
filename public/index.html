@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elixir Boilerplate</title>
+    <link href="css/app.css" rel="stylesheet">
+</head>
+<body id="app">
+    <div class="container">
+        <h1>Elixir Boilerplate Todo</h1>
+
+        <div id="tasks" class="col-md-3">
+            <div v-show="remaining.length">
+                <h1>Tasks ({{ remaining.length }})</h1>
+                <ol class="list-group">
+                    <li v-for="task in tasks | filterBy false in 'completed'"
+                        class="list-group-item">
+                        <span @dblclick="editTask(task)">{{ task.body }}</span>
+                        <button @click="removeTask(task)"><i class="fa fa-trash"></i></button>
+                        <button @click="toggleTaskCompletion(task)"><i class="fa fa-check-square-o"></i></button>
+                    </li>
+                </ol>
+            </div>
+            <form @submit="addTask">
+                <div class="form-group">
+                    <input class="form-control"
+                           v-model="newTask"
+                           v-el="newTask"
+                           placeholder="I need to..."
+                           autofocus>
+
+                </div>
+                <button class="btn btn-primary">Add task</button>
+                <button class="btn btn-default"
+                        @click="completeAll">
+                    Mark all complete</button>
+            </form>
+
+            <div v-if="completions.length">
+                <h2>Completed ({{ completions.length }})</h2>
+                <ol class="list-group">
+                    <li v-for="task in tasks | filterBy true in 'completed'"
+                        class="list-group-item">
+                        {{ task.body }}
+                        <button @click="toggleTaskCompletion(task)"><i class="fa fa-undo"></i></button>
+                    </li>
+                </ol>
+                <button @click="clearCompleted" class="btn btn-danger">Clear Completed</button>
+            </div>
+
+        </div>
+
+
+    </div>
+    <script src="/js/app.js"></script>
+</body>
+</html>

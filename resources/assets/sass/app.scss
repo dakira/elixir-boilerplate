@@ -1,0 +1,19 @@
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/font-awesome/scss/font-awesome";
+
+body {
+  padding-bottom: 30px;
+  padding-top: 70px;
+}
+
+#tasks{
+    margin: 2em 0;
+}
+
+li button{
+    background: none;
+    border: 0;
+    padding: 0;
+    float: right;
+    margin-left: 10px;
+}
